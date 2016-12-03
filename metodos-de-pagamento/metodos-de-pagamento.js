@@ -314,7 +314,7 @@
 
                 $.each(options.methods, function(env, method) {
                     if (method.active) {
-                        email = $('#profile_field_13_' + method.id, data).val().trim();
+                        email = ($('#field_id' + method.id + ' .field_uneditable', data).eq(0).text() || '').trim();
 
                         if (email.length) {
                             options.methods[env].email = email;
