@@ -385,7 +385,6 @@
                 class: 'AD_ListOption ' + data.class,
                 html: $('<a>', {
                     href: 'javascript:void(0)',
-                    target: '_blank',
                     html: [
                         $('<i>', {
                             class: data.icon
@@ -601,6 +600,7 @@
                         $('<form>', {
                             action: method.paymentUrl,
                             method: 'POST',
+                            target: '_blank',
                             html: html.createFormInputList(method.createFormData({
                                 email: method.email,
                                 price: options.product.price,
