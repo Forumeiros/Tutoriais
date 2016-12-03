@@ -316,7 +316,7 @@
                     if (method.active) {
                         email = ($('#field_id' + method.id + ' .field_uneditable', data).eq(0).text() || '').trim();
 
-                        if (email.length) {
+                        if (email.length && email !== '-') {
                             options.methods[env].email = email;
                         }
                     }
@@ -566,18 +566,14 @@
         html.getSellerEmails().then(function() {
             var emails;
 
-            emails = false;
-
             /**
              * Se não houver nenhum e-mail de vendedor, retorn
              */
-            $.each(options.methods, function (env, method) {
-                if (method.email) {
-                    emails = true;
-                }
+            emails = $.map(options.methods, function (method) {
+                return method.email;
             });
 
-            if (!emails) {
+            if (!emails.length) {
                 return false;
             }
 
