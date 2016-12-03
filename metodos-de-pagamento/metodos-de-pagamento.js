@@ -13,7 +13,7 @@
 ; (function($) {
     'use strict';
 
-    var page, options, html, style;
+    var page, options, html;
 
     /**
      * Verifica se é uma página de anúncio, caso contrário não executa o script
@@ -59,12 +59,7 @@
                     /**
                      * Título do PagSeguro
                      */
-                    title: 'PagSeguro',
-
-                    /**
-                     * Título do campo de formulário do PagSeguro
-                     */
-                    formLabel: 'E-mail do PagSeguro',
+                    title: 'PagSeguro'
                 },
 
                 /**
@@ -75,24 +70,19 @@
                     /**
                      * Classe da opção do PagSeguro
                      */
-                    optionClass: 'AD_ListPagSeguroOption',
+                    methodClass: 'AD_PagSeguroPaymentMethod',
 
                     /**
                      * Classe do ícone da opção do PagSeguro
                      */
-                    optionIconClass: 'fa fa-shopping-bag fa-2x',
-
-                    /**
-                     * ID dos campos no formulário de postagem para o PagSeguro
-                     */
-                    formId: 'AD_PagSeguroEmail'
+                    methodIconClass: 'fa fa-shopping-bag fa-2x'
                 },
 
                 /**
                  * Gera os dados do formulário para envio
                  *      data: dados do produto
                  */
-                generateFormData: function(data) {
+                createFormData: function(data) {
                     return {
                         receiverEmail: data.email,
                         currency: data.currency,
@@ -139,12 +129,7 @@
                     /**
                      * Título do PayPal
                      */
-                    title: 'PayPal',
-
-                    /**
-                    * Título do campo de formulário do PayPal
-                    */
-                    formLabel: 'E-mail do PayPal',
+                    title: 'PayPal'
                 },
 
                 /**
@@ -155,17 +140,12 @@
                     /**
                      * Classe da opção do PayPal
                      */
-                    optionClass: 'AD_ListPayPalOption',
+                    methodClass: 'AD_PayPalPaymentMethod',
 
                     /**
                      * Classe do ícone da opção do PayPal
                      */
-                    optionIconClass: 'fa fa-paypal fa-2x',
-
-                    /**
-                     * ID dos campos no formulário de postagem para o PayPal
-                     */
-                    formId: 'AD_PayPalEmail'
+                    methodIconClass: 'fa fa-paypal fa-2x'
                 },
 
                 /**
@@ -192,7 +172,7 @@
                  * Gera os dados do formulário para envio
                  *      data: dados do produto
                  */
-                generateFormData: function(data) {
+                createFormData: function(data) {
                     return {
                         cmd: '_xclick',
                         business: data.email,
@@ -233,21 +213,6 @@
              * Título da caixa de métodos de pagamento
              */
             paymentMethods: 'Métodos de pagamento',
-
-            /**
-             * Descrição da tag de preço
-             */
-            price: 'Preço',
-
-            /**
-             * Descrição da tag de país
-             */
-            country: 'País',
-
-            /**
-             * Descrição da tag de cidade
-             */
-            city: 'Cidade',
 
             /**
              * Mensagens de erro
@@ -329,7 +294,7 @@
          *      message: mensagem de erro
          */
         addError: function(message) {
-            $('.AD_ListPaymentOptions').closest('.AD_BlockContent').append($('<div>', {
+            $('.AD_ListPaymentMethods').closest('.AD_BlockContent').append($('<div>', {
                 class: 'AD_BlockContent AD_BlockError',
                 text: message
             }));
@@ -346,7 +311,7 @@
                 currency: ''
             };
 
-            element = $('.AD_ListDescLabel:contains(' + options.i18n.price + ') + .AD_ListDescValue');
+            element = $('.AD_ListDesc li:eq(0) .AD_ListDescValue');
 
             if (element.length !== 1) {
                 html.addError(options.i18n.errors.price);
@@ -395,7 +360,7 @@
          * Cria uma lista de entradas de formulário, dado um objeto de dados
          *      data : dados para a lista de entrada
          */
-        generateFormInputList: function(data) {
+        createFormInputList: function(data) {
             var list;
 
             list = [];
@@ -415,7 +380,7 @@
          * Cria uma opção na lista de método de pagamento
          *      data : objeto contendo os dados para a criação da opção
          */
-        generatePaymentOption: function(data) {
+        createPaymentMethod: function(data) {
             return $('<li>', {
                 class: 'AD_ListOption ' + data.class,
                 html: $('<a>', {
@@ -434,7 +399,7 @@
         /**
          * Constrói o bloco HTML dos métodos de pagamento
          */
-        generatePaymentOptionsBlock: function() {
+        createPaymentMethodsBlock: function() {
             var result;
 
             switch (html.version()) {
@@ -465,7 +430,7 @@
                                         html: $('<div>', {
                                             class: 'AD_BlockContent',
                                             html: $('<ul>', {
-                                                class: 'AD_ListInline AD_ListOptions AD_ListPaymentOptions'
+                                                class: 'AD_ListInline AD_ListOptions AD_ListPaymentMethods'
                                             }).prop('outerHTML')
                                         }).prop('outerHTML')
                                     })
@@ -494,7 +459,7 @@
                                 $('<div>', {
                                     class: 'AD_BlockContent',
                                     html: $('<ul>', {
-                                        class: 'AD_ListInline AD_ListOptions AD_ListPaymentOptions'
+                                        class: 'AD_ListInline AD_ListOptions AD_ListPaymentMethods'
                                     }).prop('outerHTML')
                                 }).prop('outerHTML'),
                                 $('<span>', {
@@ -520,7 +485,7 @@
                             $('<div>', {
                                 class: 'AD_BlockContent main-content clearfix',
                                 html: $('<ul>', {
-                                    class: 'AD_ListInline AD_ListOptions AD_ListPaymentOptions'
+                                    class: 'AD_ListInline AD_ListOptions AD_ListPaymentMethods'
                                 }).prop('outerHTML')
                             }).prop('outerHTML')
                         ].join('')
@@ -540,7 +505,7 @@
                             $('<div>', {
                                 class: 'AD_BlockContent',
                                 html: $('<ul>', {
-                                    class: 'AD_ListInline AD_ListOptions AD_ListPaymentOptions'
+                                    class: 'AD_ListInline AD_ListOptions AD_ListPaymentMethods'
                                 }).prop('outerHTML')
                             }).prop('outerHTML')
                         ].join('')
@@ -580,7 +545,7 @@
             /**
              * Constrói o estilo das opções de pagamento
              */
-            style = $('<style>', {
+             $('<style>', {
                 type: 'text/css',
                 text: [
                     '.AD_ListOption .fa {',
@@ -597,12 +562,7 @@
                     ].join(';'),
                     '}'
                 ].join('')
-            });
-
-            /**
-             * Insere a tag de estilo
-             */
-            style.appendTo('head');
+            }).appendTo('head');
 
             /**
              * Insere o FontAwesome, caso definido nas opções
@@ -624,24 +584,24 @@
             /**
              * Constrói o bloco HTML dos métodos de pagamento
              */
-            $('#AD_BlockSeller').after(html.generatePaymentOptionsBlock());
+            $('#AD_BlockSeller').after(html.createPaymentMethodsBlock());
 
             /**
              * Constrói as opções do menu
              */
             $.each(options.methods, function(env, method) {
                 if (method.active && method.email) {
-                    html.generatePaymentOption({
-                        class: method.html.optionClass,
-                        icon: method.html.optionIconClass,
+                    html.createPaymentMethod({
+                        class: method.html.methodClass,
+                        icon: method.html.methodIconClass,
                         title: method.i18n.title
-                    }).appendTo('.AD_ListPaymentOptions');
+                    }).appendTo('.AD_ListPaymentMethods');
 
-                    $('.' + method.html.optionClass).on('click', function() {
+                    $('.' + method.html.methodClass).on('click', function() {
                         $('<form>', {
                             action: method.paymentUrl,
                             method: 'POST',
-                            html: html.generateFormInputList(method.generateFormData({
+                            html: html.createFormInputList(method.createFormData({
                                 email: method.email,
                                 price: options.product.price,
                                 name: options.product.name,
