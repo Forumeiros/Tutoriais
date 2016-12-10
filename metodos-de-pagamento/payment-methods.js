@@ -3,10 +3,7 @@
 /**
  * Adds payment methods to ForumActif ads page
  *
- * @author Kyo Panda (ajuda.forumeiros.com)
- * @author Hancki (ajuda.forumeiros.com)
- * @author Shek Crowley (ajuda.forumeiros.com)
- *
+ * @see {@link http://ajuda.forumeiros.com Fórum dos Fóruns}
  * @license MIT
  */
 
