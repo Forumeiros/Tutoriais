@@ -4,7 +4,7 @@
  * Adds the PayPal payment method to ForumActif ads page.
  * Requires payment methods plugin to be installed.
  *
- * @see {@link http://ajuda.forumeiros.com Fórum dos Fóruns}
+ * @see <a href="http://ajuda.forumeiros.com">Fórum dos Fóruns</a>
  * @license MIT
  */
 

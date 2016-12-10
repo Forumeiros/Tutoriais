@@ -3,7 +3,7 @@
 /**
  * Adds payment methods to ForumActif ads page
  *
- * @see {@link http://ajuda.forumeiros.com Fórum dos Fóruns}
+ * @see <a href="http://ajuda.forumeiros.com">Fórum dos Fóruns</a>
  * @license MIT
  */
 
