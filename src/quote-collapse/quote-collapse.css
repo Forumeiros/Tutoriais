@@ -1,0 +1,31 @@
+/** BEGIN Quote Collapse */
+
+.fa-quote-collapsed {
+  display: block;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+a.fa-quote-expand {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  width: 150px;
+  margin-left: -75px;
+  height: 30px;
+  line-height: 30px;
+  bottom: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  background-color: #fff;
+  border: 1px #999 solid;
+}
+
+.fa-quote-collapsed a.fa-quote-expand {
+  display: block;
+}
+
+/** END Quote Collapse */
