@@ -8,13 +8,13 @@
  * @license MIT
  */
 
-; FA.Advertisement.Payment.addMethod({
+FA.Advertisement.Payment.addMethod({
   profileFieldId: 1,
   title: 'PagSeguro',
   methodClass: 'AD_PagSeguroPaymentMethod',
   methodIconClass: 'fa fa-shopping-bag fa-2x',
   endpointUrl: 'https://pagseguro.uol.com.br/v2/checkout/payment.html',
-  formData: function (args) {
+  formData: function(args) {
     return {
       receiverEmail: args.email,
       currency: 'BRL',
@@ -25,7 +25,7 @@
       itemWeight1: '0000',
       reference: 'REF' + args.id,
       senderName: _userdata.username,
-      encoding: 'UTF-8'
+      encoding: 'UTF-8',
     };
-  }
+  },
 });

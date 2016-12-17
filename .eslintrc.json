@@ -2,7 +2,7 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es6": false,
+        "es6": true,
         "node": true
     },
     "parserOptions": {
@@ -11,7 +11,10 @@
         },
         "sourceType": "module"
     },
-    "extends": "airbnb-base/legacy",
+    "extends": [
+        "eslint:recommended",
+        "google"
+    ],
     "rules": {
         "no-const-assign": "warn",
         "no-this-before-super": "warn",
@@ -20,10 +23,9 @@
         "no-unused-vars": "warn",
         "constructor-super": "warn",
         "valid-typeof": "warn",
-        "no-extra-semi": "off",
-        "vars-on-top": "off",
-        "no-use-before-define": "off",
-        "func-names": "off",
-        "no-console": "off"
+        "no-var": "off",
+        "no-invalid-this": "off",
+        "prefer-rest-params": "off",
+        "max-len": "off"
     }
 }

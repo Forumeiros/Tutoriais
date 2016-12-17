@@ -1,24 +1,17 @@
 {
-  "name": "fabrica-de-tutoriais",
+  "name": "forumeiros-suporte",
   "version": "1.0.0",
-  "description": "Fábrica de Tutoriais Forumeiros.",
+  "description": "Códigos gerados no suporte ao Forumeiros.",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Forumeiros/fabrica-de-tutoriais.git"
-  },
-  "author": "",
+  "author": "Artur Hansen <arturhns@live.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Forumeiros/fabrica-de-tutoriais/issues"
-  },
-  "homepage": "https://github.com/Forumeiros/fabrica-de-tutoriais#readme",
   "devDependencies": {
-    "eslint": "^3.11.1",
-    "eslint-config-airbnb-base": "^10.0.1",
-    "eslint-plugin-import": "^2.2.0"
+    "@types/jquery": "^2.0.34",
+    "eslint": "^3.12.1",
+    "eslint-config-google": "^0.7.1"
   }
 }

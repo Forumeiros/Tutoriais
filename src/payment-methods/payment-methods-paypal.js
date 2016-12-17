@@ -8,13 +8,13 @@
  * @license MIT
  */
 
-; FA.Advertisement.Payment.addMethod({
+FA.Advertisement.Payment.addMethod({
   profileFieldId: 2,
   title: 'PayPal',
   methodClass: 'AD_PayPalPaymentMethod',
   methodIconClass: 'fa fa-paypal fa-2x',
   endpointUrl: 'https://www.paypal.com/cgi-bin/webscr',
-  formData: function (args) {
+  formData: function(args) {
     return {
       cmd: '_xclick',
       business: args.email,
@@ -27,7 +27,7 @@
       currency_code: 'BRL',
       amount: args.price,
       item_name: args.name,
-      quantity: 1
+      quantity: 1,
     };
-  }
+  },
 });

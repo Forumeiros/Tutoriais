@@ -7,11 +7,11 @@
  * @license MIT
  */
 
-; var FA = FA || {};
+var FA = FA || {};
 
 FA.Advertisement = FA.Advertisement || {};
 
-FA.Advertisement.Payment = (function ($, settings) {
+FA.Advertisement.Payment = (function($, settings) {
   var built = false;
   var methods = [];
   var product = {};
@@ -21,56 +21,43 @@ FA.Advertisement.Payment = (function ($, settings) {
   var version;
   var $list;
 
+  /**
+   * Initialization function
+   */
   function Payment() {
-    $(function () {
+    $(function() {
       var matches = location.pathname.match(/\/d(\d+)(p\d+)?-(.*)/i);
 
       if (matches === null) {
-        log('Not in an advertisement page.');
         return;
       }
 
       product.id = matches[1];
 
       if (_userdata.user_id === -1) {
-        log('Don\'t build payment options for guest members.');
         return;
       }
 
       version = getForumVersion();
 
-      if (!version) {
-        log('Forum version not supported.');
-      }
-
-      if (!parsePrice()) {
-        log('Couldn\'t parse price from page.');
+      if (!version || !parsePrice() || !parseName() || !getSellerData()) {
         return;
-      }
-
-      if (!parseName()) {
-        log('Couldn\'t parse name from page.');
-        return;
-      }
-
-      if (!getSellerData()) {
-        log('Couldn\'t parse seller URL from page.');
       }
     });
-  };
+  }
 
-  Payment.prototype.getMethods = function () {
+  Payment.prototype.getMethods = function() {
     return methods;
   };
 
-  Payment.prototype.addMethod = function (data) {
+  Payment.prototype.addMethod = function(data) {
     methods.push(data);
     if (ready) {
       buildMethod(data);
     }
   };
 
-  var buildBlockHTML = function () {
+  var buildBlockHTML = function() {
     switch (version) {
 
       case 'phpbb2':
@@ -92,7 +79,7 @@ FA.Advertisement.Payment = (function ($, settings) {
           '      </td>',
           '    </tr>',
           '  </tbody>',
-          '</table>'
+          '</table>',
         ].join('\n');
 
       case 'phpbb3':
@@ -108,7 +95,7 @@ FA.Advertisement.Payment = (function ($, settings) {
           '    </div>',
           '    <span class="corners-bottom"><span></span></span>',
           '  </div>',
-          '</div>'
+          '</div>',
         ].join('\n');
 
       case 'punbb':
@@ -120,7 +107,7 @@ FA.Advertisement.Payment = (function ($, settings) {
           '  <div class="AD_BlockContent main-content clearfix">',
           '    <ul class="AD_ListInline AD_ListOptions AD_ListPayment"></ul>',
           '  </div>',
-          '</div>'
+          '</div>',
         ].join('\n');
 
       case 'invision':
@@ -132,7 +119,7 @@ FA.Advertisement.Payment = (function ($, settings) {
           '  <div class="AD_BlockContent">',
           '    <ul class="AD_ListInline AD_ListOptions AD_ListPayment"></ul>',
           '  </div>',
-          '</div>'
+          '</div>',
         ].join('\n');
 
       case 'mobile-modern':
@@ -140,7 +127,7 @@ FA.Advertisement.Payment = (function ($, settings) {
           '<div id="ad-block-options">',
           '  <h2>' + settings.title + '</h2>',
           '  <ul class="ad-mod-options box-subtle AD_ListPayment"></ul>',
-          '</div>'
+          '</div>',
         ].join('\n');
 
       default:
@@ -148,7 +135,7 @@ FA.Advertisement.Payment = (function ($, settings) {
     }
   };
 
-  var buildFontAwesome = function () {
+  var buildFontAwesome = function() {
     return [
       '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />',
       '<style>',
@@ -166,23 +153,23 @@ FA.Advertisement.Payment = (function ($, settings) {
       '  #ad-block-options h2 {',
       '    text-align: center;',
       '  }',
-      '</style>'
+      '</style>',
     ].join('\n');
   };
 
-  var buildForm = function (data) {
+  var buildForm = function(data) {
     var list;
 
     list = [];
 
-    $.each(data, function (key, value) {
+    $.each(data, function(key, value) {
       list.push('<input type="hidden" name="' + key + '" value="' + value + '" />');
     });
 
     return list.join('\n');
   };
 
-  var buildHTML = function () {
+  var buildHTML = function() {
     if (version === 'mobile-modern') {
       $('.box:eq(0)').after(buildBlockHTML());
     } else {
@@ -199,11 +186,10 @@ FA.Advertisement.Payment = (function ($, settings) {
     built = true;
   };
 
-  var buildMethod = function (data) {
+  var buildMethod = function(data) {
     var email = seller[data.profileFieldId];
 
     if (!email || email === '-') {
-      log('The seller has no e-mail for given method:', data.title);
       return;
     }
 
@@ -214,10 +200,10 @@ FA.Advertisement.Payment = (function ($, settings) {
     $list.append([
       '<li class="AD_ListOption ' + data.methodClass + '">',
       '  <a href="#"><span class="' + data.methodIconClass + '"></span>' + data.title + '</a>',
-      '</li>'
+      '</li>',
     ].join('\n'));
 
-    $list.on('click', 'li.' + data.methodClass + ' a', function (event) {
+    $list.on('click', 'li.' + data.methodClass + ' a', function(event) {
       event.preventDefault();
 
       $('<form>', {
@@ -228,19 +214,19 @@ FA.Advertisement.Payment = (function ($, settings) {
           email: email,
           price: product.price,
           name: product.name,
-          id: product.id
-        }))
+          id: product.id,
+        })),
       }).submit();
     });
   };
 
-  var buildMethods = function () {
-    $.each(methods, function (key, data) {
+  var buildMethods = function() {
+    $.each(methods, function(key, data) {
       buildMethod(data);
     });
   };
 
-  var buildStyle = function () {
+  var buildStyle = function() {
     return [
       '<style>',
       '  .AD_ListOption a span {',
@@ -250,11 +236,11 @@ FA.Advertisement.Payment = (function ($, settings) {
       '    width: 30px;',
       '    height: 30px;',
       '  }',
-      '</style>'
+      '</style>',
     ].join('\n');
   };
 
-  var getForumVersion = function () {
+  var getForumVersion = function() {
     if ($('table.bodylinewidth').length !== 0) {
       return 'phpbb2';
     }
@@ -278,7 +264,7 @@ FA.Advertisement.Payment = (function ($, settings) {
     return false;
   };
 
-  var getSellerData = function () {
+  var getSellerData = function() {
     var $element;
 
     if (version === 'mobile-modern') {
@@ -291,7 +277,7 @@ FA.Advertisement.Payment = (function ($, settings) {
       return false;
     }
 
-    return $.get($element.attr('href'), function (html) {
+    return $.get($element.attr('href'), function(html) {
       var $fields;
 
       if (version === 'mobile-modern') {
@@ -301,11 +287,10 @@ FA.Advertisement.Payment = (function ($, settings) {
       }
 
       if ($fields.length === 0) {
-        log('Couldn\'t parse seller data from page.');
         return;
       }
 
-      $fields.each(function () {
+      $fields.each(function() {
         var $self = $(this);
         var id = $self.attr('id').replace(/[^\d-]+/g, '');
 
@@ -322,17 +307,7 @@ FA.Advertisement.Payment = (function ($, settings) {
     });
   };
 
-  var log = function () {
-    if (!console || !console.log) {
-      return;
-    }
-
-    var args = Array.prototype.slice.call(arguments);
-
-    console.log.apply(this, ['[FA.Advertisement.Payment]'].concat(args));
-  };
-
-  var parseName = function () {
+  var parseName = function() {
     var $element;
 
     if (version === 'mobile-modern') {
@@ -350,7 +325,7 @@ FA.Advertisement.Payment = (function ($, settings) {
     return true;
   };
 
-  var parsePrice = function () {
+  var parsePrice = function() {
     var $element;
 
     if (version === 'mobile-modern') {
@@ -382,5 +357,5 @@ FA.Advertisement.Payment = (function ($, settings) {
   return new Payment();
 }(jQuery, {
   title: 'Métodos de pagamento',
-  fontawesome: true
+  fontawesome: true,
 }));
