@@ -34,6 +34,7 @@ FA.Topic.QuoteCollapse = (function($, settings) {
       }, function(key, selector) {
         if ($(selector).length !== 0) {
           version = key;
+          return false;
         }
       });
 
