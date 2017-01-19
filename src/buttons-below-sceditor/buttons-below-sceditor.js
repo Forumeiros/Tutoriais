@@ -19,7 +19,7 @@
     /** Botão 1 */
     $textarea.after('<div class="button2 fa-button" id="botao1-b">NOME DO BOTÃO 1</div>');
     $('#botao1-b').click(function() {
-      sceditor.insertText('TEXTO A SER INSERIDO NO BOTÃO 1')
+      sceditor.insertText('TEXTO A SER INSERIDO NO BOTÃO 1');
     });
 
     /** Botão 2*/
