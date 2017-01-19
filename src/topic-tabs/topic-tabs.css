@@ -1,0 +1,43 @@
+/**
+ * BEGIN Topic Tabs
+ */
+
+#fa-topic-tabs {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#fa-topic-tabs li {
+  float: left;
+  display: block;
+  margin-right: 10px;
+}
+
+#fa-topic-tabs a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  width: 100px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px #999 solid;
+  border-radius: 3px 3px 0 0;
+  box-sizing: border-box;
+}
+
+#mpage-body #fa-topic-tabs li,
+#mpage-body-modern #fa-topic-tabs li {
+  float: none;
+  margin-right: 0;
+}
+
+#mpage-body #fa-topic-tabs a,
+#mpage-body-modern #fa-topic-tabs a {
+  width: 100%;
+}
+
+/**
+ * END Topic Tabs
+ */
