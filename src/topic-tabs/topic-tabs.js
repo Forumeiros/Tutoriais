@@ -1,4 +1,11 @@
-/* global jQuery */
+/* globals jQuery */
+
+/**
+ * Adds tabs to topics with custom defined links.
+ *
+ * @see <a href="http://ajuda.forumeiros.com">Fórum dos Fóruns</a>
+ * @license MIT
+ */
 
 var FA = FA || {};
 
