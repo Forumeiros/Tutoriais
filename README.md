@@ -1,6 +1,6 @@
 ### Tutoriais
 
-Este repositório contém tutoriais especiais para os fóruns forumeiros.
+Este repositório contém tutoriais especiais para os fóruns forumeiros.  
 Atualmente, têm-se aqui os tutoriais:
 
 1. [Abas nos tópicos](https://github.com/Forumeiros/Tutoriais/tree/master/src/topic-tabs);
