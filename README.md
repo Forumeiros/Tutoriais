@@ -9,5 +9,6 @@ Atualmente, têm-se aqui os tutoriais:
 4. [_Quote Collapse_](https://github.com/Forumeiros/Tutoriais/tree/master/src/quote-collapse);
 5. [Criar métodos de pagamento/doação](https://github.com/Forumeiros/Tutoriais/tree/master/src/payment-methods);
 6. [Botões abaixo do _SCEditor_](https://github.com/Forumeiros/Tutoriais/tree/master/src/buttons-below-sceditor).
+7. [Visualizar e pesquisar membros com AJAX](https://github.com/Forumeiros/Tutoriais/tree/master/src/ajax-userlist).
 
 Se você tem uma sugestão ou deseja reportar um _bug_, por favor, abra uma nova _issue_ [aqui](https://github.com/Forumeiros/Tutoriais/issues).
