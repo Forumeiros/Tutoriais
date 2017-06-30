@@ -442,14 +442,15 @@
       '          <ul>',
       '            <span class="finding-loading-status fa-search-error"><i class="fa fa-user"></i> Digite o nick de algum usuário...</span>',
       '          </ul>',
+      '          <span class="fa fa-times" id="close-find-wrapper"></span>',
       '        </div>',
       '        <div class="fa-select-form-group">',
       '          <label for="fa-display-user-type">Ordenar por:</label>',
       '          <select id="fa-display-user-type">',
       '            <option value="lastvisit" selected="selected">Última visita</option>',
       '            <option value="joined">Inscrito dia</option>',
-      '             <option value="username">Nome de usuário</option>',
-      '             <option value="posts">Mensagens</option>',
+      '            <option value="username">Nome de usuário</option>',
+      '            <option value="posts">Mensagens</option>',
       '          </select>',
       '        </div>',
       '        <div class="fa-select-form-group">',
@@ -541,7 +542,7 @@
     members.template.find('#fa-field-find-user')
       .on({
 
-        blur: function () {
+        focus: function () {
           members.template.find('.fa-members-find ul li').remove();
 
           members.template.find('.fa-members-find ul')
@@ -580,22 +581,18 @@
 
             return false;
           }
-        },
-
-        focusout: function () {
-          members.template.find('.fa-members-find ul li').remove();
-
-          members.template.find('.fa-members-find ul')
-            .html('<span class="finding-loading-status fa-search-error"><i class="fa fa-user"></i> Digite o nick de algum usuário...</span>')
-          ;
-
-          if (members.template.find('.fa-members-find').is(':hover')) {
-            return;
-          }
-
-          $(this).val('');
         }
+      })
+    ;
 
+    /**
+     * Ao clicar no botão de fechar no find.
+     */
+    members.template.find('#close-find-wrapper')
+      .on('click', function () {
+        members.template.find('.fa-members-find ul').hide();
+        members.template.find('.fa-members-find ul li').remove();
+        members.template.find('#fa-field-find-user').val('');
       })
     ;
 
@@ -659,7 +656,7 @@
       '.fa-members-find .fa-pmlink-find {',
       '  position: absolute;',
       '  top: 50%;',
-      '  right: 2px;',
+      '  right: 20px;',
       '  color: #39c;',
       '  font-size: 15px;',
       '  -moz-transform: translateY(-50%);',
@@ -916,6 +913,22 @@
       'input#fa-field-find-user:focus + div.fa-members-find,',
       'div.fa-members-find:hover {',
       '  display: block!important;',
+      '}',
+      '',
+      'span#close-find-wrapper {',
+      '  position: absolute;',
+      '  right: 15px;',
+      '  top: 50%;',
+      '  -moz-transform: translateY(-50%);',
+      '  -ms-transform: translateY(-50%);',
+      '  -webkit-transform: translateY(-50%);',
+      '  -o-transform: translateY(-50%);',
+      '  transform: translateY(-50%);',
+      '  cursor: pointer;',
+      '}',
+      '',
+      'span#close-find-wrapper:hover {',
+      '  color: #39c;',
       '}'
     ].join('\n');
 
