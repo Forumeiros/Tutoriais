@@ -7,7 +7,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Artur Hansen <arturhns@live.com>",
+  "authors": [
+    "Artur Hansen <arturhns@live.com>",
+    "Luiz Felipe <frazaolipe@gmail.com>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@types/jquery": "^2.0.34",
