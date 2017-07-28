@@ -11,6 +11,7 @@ Atualmente, têm-se aqui os tutoriais:
 6. [Botões abaixo do _SCEditor_](https://github.com/Forumeiros/Tutoriais/tree/master/src/buttons-below-sceditor);
 7. [Visualizar e pesquisar membros com AJAX](https://github.com/Forumeiros/Tutoriais/tree/master/src/ajax-userlist);
 8. [Botão da FontAwesome no SCEditor](https://github.com/Forumeiros/Tutoriais/tree/master/src/sceditor-fontawesome-button);
-9. [Deletar uma mensagem com AJAX](https://github.com/Forumeiros/Tutoriais/tree/master/src/ajax-delete-post).
+9. [Deletar uma mensagem com AJAX](https://github.com/Forumeiros/Tutoriais/tree/master/src/ajax-delete-post);
+10. [Criar um popover de login](https://github.com/Forumeiros/Tutoriais/tree/master/src/login-popover).
 
 Se você tem uma sugestão ou deseja reportar um _bug_, por favor, abra uma nova _issue_ [aqui](https://github.com/Forumeiros/Tutoriais/issues).
